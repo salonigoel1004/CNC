@@ -1,0 +1,23 @@
+backend/
+└── app/
+    ├── main.py                 # App entry
+    ├── config/
+    │   └── settings.py         # env, Influx config
+    ├── db/
+    │   └── influx.py           # Influx client + helpers
+    ├── services/
+    │   ├── machines.py         # machine discovery
+    │   ├── telemetry.py        # telemetry queries
+    │   ├── state.py            # state timelines
+    │   ├── business.py         # part counts
+    │   └── jobs.py             # job lifecycle logic
+    ├── api/
+    │   ├── machines.py         # REST endpoints
+    │   ├── telemetry.py
+    │   ├── state.py
+    │   ├── jobs.py
+    │   └── websocket.py        # live streaming
+    ├── models/
+    │   └── schemas.py          # request/response models
+    └── utils/
+        └── time.py
