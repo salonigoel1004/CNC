@@ -1,0 +1,12 @@
+.venv/
+node_modules/
+cnc.conf
+backend/.venv/
+backend/.env
+backend/node_modules/
+backend/logs/
+*.log
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
