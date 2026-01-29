@@ -1,6 +1,7 @@
 .venv/
 node_modules/
-cnc.conf
+logs/
+cnc_sim/cnc.conf
 backend/.venv/
 backend/.env
 backend/node_modules/
@@ -10,3 +11,4 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+frontend/.env
