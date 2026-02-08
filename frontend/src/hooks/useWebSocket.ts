@@ -19,7 +19,7 @@ export function useWebSocket(
       wsRef.current = ws;
 
       ws.onopen = () => {
-        console.log(`✅ WebSocket connected: ${machineId}`);
+        console.log(`WebSocket connected: ${machineId}`);
         setIsConnected(true);
       };
 

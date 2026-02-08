@@ -12,3 +12,8 @@ __pycache__/
 *.pyo
 *.pyd
 frontend/.env
+frontend/*.tsbuildinfo
+frontend/vite.config.d.ts
+frontend/vite.config.js
+backend/data/
+backend/venv/

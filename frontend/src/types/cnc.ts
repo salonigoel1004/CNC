@@ -13,6 +13,9 @@ export interface MachineTelemetry {
   axisPosition: AxisPosition;
   temperature: number;
   runtime: number;
+}
+
+export interface MachineBusiness {
   partCount: number;
 }
 
@@ -21,6 +24,7 @@ export interface Machine {
   name: string;
   status: MachineStatus;
   telemetry: MachineTelemetry;
+  business: MachineBusiness;
   lastUpdate: Date;
   jobNo: string;
   operator: string;
@@ -29,7 +33,7 @@ export interface Machine {
 // Backend API types
 export interface BackendMachine {
   machine_id: string;
-  current_state: number; // 0=IDLE, 1=RUNNING, 2=FAULT
+  current_state: number;
   last_seen: string | null;
 }
 
@@ -43,10 +47,36 @@ export interface WebSocketMessage {
     load?: number;
     temperature?: number;
     runtime?: number;
-    part_count?: number;
     axis_x?: number;
     axis_y?: number;
     axis_z?: number;
   };
+  
+  business?: {
+    part_count?: number;
+  };
+  
   current_job?: string;
+}
+
+export type UserRole = "OWNER" | "MANAGER" | "WORKER";
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+  post: string;
+  identity_number: string;
+  photo_url: string | null;
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  token: string;
+  user: User;
 }

@@ -13,7 +13,6 @@ export function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch machines on mount
   useEffect(() => {
     fetchMachines()
       .then((backendMachines: BackendMachine[]) => {
@@ -28,8 +27,11 @@ export function Dashboard() {
             axisPosition: { x: 0, y: 0, z: 0 },
             temperature: 0,
             runtime: 0,
+          },
+          business: {
             partCount: 0,
           },
+
           lastUpdate: bm.last_seen ? new Date(bm.last_seen) : new Date(),
           jobNo: "N/A",
           operator: "Unknown",
@@ -45,7 +47,6 @@ export function Dashboard() {
       });
   }, []);
 
-  // WebSocket message handler
   const handleWebSocketMessage = useCallback((data: WebSocketMessage) => {
     setMachines((prev) =>
       prev.map((m) => {
@@ -62,19 +63,21 @@ export function Dashboard() {
             load: data.telemetry?.load ?? m.telemetry.load,
             temperature: data.telemetry?.temperature ?? m.telemetry.temperature,
             runtime: data.telemetry?.runtime ?? m.telemetry.runtime,
-            partCount: data.telemetry?.part_count ?? m.telemetry.partCount,
             axisPosition: {
               x: data.telemetry?.axis_x ?? m.telemetry.axisPosition.x,
               y: data.telemetry?.axis_y ?? m.telemetry.axisPosition.y,
               z: data.telemetry?.axis_z ?? m.telemetry.axisPosition.z,
             },
           },
+            business: {
+            partCount: data.business?.part_count ?? m.business?.partCount ?? 0,
+            },
         };
       })
     );
   }, []);
 
-  // Connect WebSocket for selected machine
+  
   const isConnected = useWebSocket(selectedId, handleWebSocketMessage);
 
   const selectedMachine = machines.find((m) => m.id === selectedId);
@@ -97,7 +100,6 @@ export function Dashboard() {
           <AlertTriangle className="mx-auto mb-4 size-16 text-red-500" />
           <p className="text-lg text-red-600">{error}</p>
           <p className="mt-2 text-sm text-gray-500">
-            Make sure your backend is running on http://localhost:8000
           </p>
         </div>
       </div>

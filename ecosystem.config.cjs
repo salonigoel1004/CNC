@@ -20,19 +20,6 @@ module.exports = {
     },
 
 
-
-
-    /* ---------------- FASTAPI BACKEND ---------------- */
-    {
-      name: "backend-api",
-      script: "C:\\CNC\\.venv\\Scripts\\python.exe",
-      args: "-m uvicorn app.main:app --host 0.0.0.0 --port 8000",
-      cwd: "./backend",
-      autorestart: true,
-      out_file: "./logs/backend-out.log",
-      error_file: "./logs/backend-error.log",
-    },
-
     /* ---------------- FRONTEND ---------------- */
     {
       name: "frontend",

@@ -22,7 +22,7 @@ function formatRuntime(seconds: number): string {
 }
 
 export function MachineDetail({ machine }: MachineDetailProps) {
-  const { telemetry } = machine;
+  const { telemetry, business } = machine;
 
   return (
     <div className="h-full overflow-auto p-6">
@@ -142,7 +142,7 @@ export function MachineDetail({ machine }: MachineDetailProps) {
           />
           <TelemetryCard
             label="Part Count"
-            value={telemetry.partCount.toLocaleString()}
+            value={business.partCount.toLocaleString()}
             unit="pcs"
             icon={Package}
           />

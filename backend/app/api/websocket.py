@@ -33,7 +33,8 @@ async def machine_live_ws(websocket: WebSocket, machine_id: str):
                 "current_state": state_value,
                 "timestamp": datetime.utcnow().isoformat() + "Z",
                 "telemetry": snapshot.get("telemetry", {}),  
-                "current_job": snapshot.get("current_job")  
+                "current_job": snapshot.get("current_job"),
+                "business": snapshot.get("business", {})
             }
 
             await websocket.send_json(payload)
