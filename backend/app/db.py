@@ -1,5 +1,5 @@
 from influxdb_client import InfluxDBClient
-from app.config.settings import settings
+from app.settings import settings
 
 _client = None
 

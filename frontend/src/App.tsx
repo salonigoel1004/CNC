@@ -1,4 +1,4 @@
-import { useAuth } from './app/providers';
+import { useAuth } from './providers';
 import { Dashboard } from './components/Dashboard';
 import { Login } from './components/Login';
 import { Cpu } from 'lucide-react';

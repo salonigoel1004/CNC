@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import type { WebSocketMessage } from '../types/cnc';
+import type { WebSocketMessage } from './types';
 
 const WS_BASE_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000';
 
@@ -37,12 +37,11 @@ export function useWebSocket(
       };
 
       ws.onclose = () => {
-        console.log(`❌ WebSocket closed: ${machineId}`);
+        console.log(`WebSocket closed: ${machineId}`);
         setIsConnected(false);
-        
 
         reconnectTimeoutRef.current = setTimeout(() => {
-          console.log(`🔄 Reconnecting WebSocket: ${machineId}`);
+          console.log(`Reconnecting WebSocket: ${machineId}`);
           connect();
         }, 3000);
       };

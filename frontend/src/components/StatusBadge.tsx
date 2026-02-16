@@ -1,5 +1,5 @@
 import { cn } from '../utils/cn';
-import type { MachineStatus } from '../types/cnc';
+import type { MachineStatus } from '../types';
 
 interface StatusBadgeProps {
   status: MachineStatus;

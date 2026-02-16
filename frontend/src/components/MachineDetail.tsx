@@ -1,4 +1,4 @@
-import type { Machine } from '../types/cnc';
+import type { Machine } from '../types';
 import { StatusBadge } from './StatusBadge';
 import { TelemetryCard } from './TelemetryCard';
 import {

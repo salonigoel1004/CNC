@@ -1,5 +1,5 @@
-from app.db.influx import get_influx_client
-from app.config.settings import settings
+from app.db import get_influx_client
+from app.settings import settings
 from datetime import datetime
 
 

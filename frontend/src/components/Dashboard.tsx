@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { Machine, BackendMachine, WebSocketMessage } from '../types/cnc';
+import type { Machine, BackendMachine, WebSocketMessage } from '../types';
 import { MachineSidebar } from './MachineSideBar';
 import { MachineDetail } from './MachineDetail';
 import { Cpu, AlertTriangle } from 'lucide-react';
 import { fetchMachines } from '../api/machines';
 import { mapStateToStatus } from '../utils/mappers';
-import { useWebSocket } from '../hooks/useWebSocket';
+import { useWebSocket } from '../hooks';
 
 export function Dashboard() {
   const [machines, setMachines] = useState<Machine[]>([]);

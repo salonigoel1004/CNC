@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { useAuth } from '../app/providers';
+import { useAuth } from '../providers';
 import { Cpu } from 'lucide-react';
 
 export function Login() {

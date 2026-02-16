@@ -1,4 +1,4 @@
-import type { Machine } from '../types/cnc';
+import type { Machine } from '../types';
 import { MachineListItem } from './MachineListItem';
 import { Cpu } from 'lucide-react';
 

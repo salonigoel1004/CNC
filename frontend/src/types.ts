@@ -51,11 +51,11 @@ export interface WebSocketMessage {
     axis_y?: number;
     axis_z?: number;
   };
-  
+
   business?: {
     part_count?: number;
   };
-  
+
   current_job?: string;
 }
 

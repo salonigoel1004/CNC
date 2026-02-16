@@ -18,9 +18,11 @@ JOBS = [101, 102, 103]
 
 # ---------------- CNC CLASS ----------------
 class CNCMachine:
-    def __init__(self, machine_id, client):
+    def __init__(self, machine_id, client, job_run=(20, 40), job_idle=(5, 10)):
         self.machine_id = machine_id
         self.client = client
+        self.job_run = job_run
+        self.job_idle = job_idle
 
         self.status = "IDLE"
         self.running_time = 0
@@ -79,7 +81,7 @@ class CNCMachine:
     def publish_running_time(self):
         while True:
             with self.lock:
-                if self.status in ["RUNNING", "IDLE"]:
+                if self.status == "RUNNING":
                     self.running_time += 1
 
                 payload = {
@@ -126,7 +128,7 @@ class CNCMachine:
             print(f"[{self.machine_id}] Job {job_id} STARTED")
 
             # Job execution time
-            time.sleep(random.randint(20, 40))
+            time.sleep(random.randint(*self.job_run))
 
             # Job end
             with self.lock:
@@ -136,7 +138,7 @@ class CNCMachine:
             self.publish_job_event(job_id, 0)
             print(f"[{self.machine_id}] Job {job_id} ENDED")
 
-            time.sleep(random.randint(5, 10))
+            time.sleep(random.randint(*self.job_idle))
 
     # -------- START ALL THREADS --------
     def start(self):
@@ -161,8 +163,8 @@ client.connect(BROKER, PORT, 60)
 print("Multi-CNC Simulator with Job Events Started")
 
 machines = [
-    CNCMachine("machine1", client),
-    CNCMachine("machine2", client),
+    CNCMachine("machine1", client, job_run=(30, 50), job_idle=(5, 10)),
+    CNCMachine("machine2", client, job_run=(15, 25), job_idle=(10, 20)),
 ]
 
 for machine in machines:

@@ -28,11 +28,16 @@ async def machine_live_ws(websocket: WebSocket, machine_id: str):
                 await asyncio.sleep(0.1)  
                 continue
 
+            raw_telemetry = snapshot.get("telemetry", {})
+            # Normalize field names for the frontend
+            if "running_time" in raw_telemetry:
+                raw_telemetry["runtime"] = raw_telemetry.pop("running_time")
+
             payload = {
                 "machine_id": machine_id,
                 "current_state": state_value,
                 "timestamp": datetime.utcnow().isoformat() + "Z",
-                "telemetry": snapshot.get("telemetry", {}),  
+                "telemetry": raw_telemetry,
                 "current_job": snapshot.get("current_job"),
                 "business": snapshot.get("business", {})
             }

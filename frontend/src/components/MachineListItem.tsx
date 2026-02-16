@@ -1,5 +1,5 @@
 import { cn } from '../utils/cn';
-import type { Machine } from '../types/cnc';
+import type { Machine } from '../types';
 import { Activity, AlertTriangle, Pause } from 'lucide-react';
 
 interface MachineListItemProps {

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from fastapi import HTTPException, Depends, Cookie
-from app.config.settings import settings
+from app.settings import settings
 from app.services.user_store import user_store
 from app.models.user import User, UserRole
 

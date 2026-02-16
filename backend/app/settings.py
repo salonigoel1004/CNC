@@ -9,8 +9,8 @@ class Settings:
     INFLUX_ORG = os.getenv("INFLUX_ORG")
     INFLUX_BUCKET_REALTIME = os.getenv("INFLUX_BUCKET_REALTIME")
     INFLUX_BUCKET_1S = os.getenv("INFLUX_BUCKET_1S")
-    
+
     # Auth setting
     SECRET_KEY = os.getenv("SECRET_KEY")
-    
+
 settings = Settings()

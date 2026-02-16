@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import type { User, LoginRequest } from '../types/cnc';
-import { login as apiLogin, logout as apiLogout, getCurrentUser } from '../api/auth';
+import type { User, LoginRequest } from './types';
+import { login as apiLogin, logout as apiLogout, getCurrentUser } from './api/auth';
 
 // React Query Client
 const queryClient = new QueryClient();

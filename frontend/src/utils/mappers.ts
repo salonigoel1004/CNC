@@ -1,4 +1,4 @@
-import type { MachineStatus } from '@/types/cnc';
+import type { MachineStatus } from '../types';
 
 export function mapStateToStatus(state: number): MachineStatus {
   switch (state) {
