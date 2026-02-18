@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import machines, telemetry, websocket, state_timeline, jobs, auth
+from app.api import machines, telemetry, websocket, state_timeline, jobs, auth, reports
 
 app = FastAPI(title="CNC Backend API")
 
@@ -20,3 +20,4 @@ app.include_router(websocket.router)
 app.include_router(state_timeline.router)
 app.include_router(jobs.router)
 app.include_router(auth.router)
+app.include_router(reports.router)

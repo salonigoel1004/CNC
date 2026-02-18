@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { useAuth } from './providers';
 import { Dashboard } from './components/Dashboard';
+import { Reports } from './components/Reports';
 import { Login } from './components/Login';
 import { Cpu } from 'lucide-react';
+import type { AppPage } from './types';
 
 export default function App() {
   const { user, isLoading } = useAuth();
+  const [currentPage, setCurrentPage] = useState<AppPage>("monitor");
 
   if (isLoading) {
     return (
@@ -14,5 +18,11 @@ export default function App() {
     );
   }
 
-  return user ? <Dashboard /> : <Login />;
+  if (!user) return <Login />;
+
+  if (currentPage === "reports") {
+    return <Reports currentPage={currentPage} onNavigate={setCurrentPage} />;
+  }
+
+  return <Dashboard currentPage={currentPage} onNavigate={setCurrentPage} />;
 }

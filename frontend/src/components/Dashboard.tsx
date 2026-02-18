@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { Machine, BackendMachine, WebSocketMessage } from '../types';
+import type { Machine, BackendMachine, WebSocketMessage, AppPage } from '../types';
 import { MachineSidebar } from './MachineSideBar';
 import { MachineDetail } from './MachineDetail';
 import { Cpu, AlertTriangle } from 'lucide-react';
@@ -7,7 +7,12 @@ import { fetchMachines } from '../api/machines';
 import { mapStateToStatus } from '../utils/mappers';
 import { useWebSocket } from '../hooks';
 
-export function Dashboard() {
+interface DashboardProps {
+  currentPage: AppPage;
+  onNavigate: (page: AppPage) => void;
+}
+
+export function Dashboard({ currentPage, onNavigate }: DashboardProps) {
   const [machines, setMachines] = useState<Machine[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -112,6 +117,8 @@ export function Dashboard() {
         machines={machines}
         selectedId={selectedId}
         onSelect={setSelectedId}
+        currentPage={currentPage}
+        onNavigate={onNavigate}
       />
       <main className="flex-1 overflow-hidden">
         {selectedMachine ? (

@@ -1,3 +1,6 @@
+export type AppPage = "monitor" | "reports";
+export type ReportPeriod = "daily" | "weekly" | "monthly";
+
 export type MachineStatus = "RUNNING" | "IDLE" | "FAULT";
 
 export interface AxisPosition {
@@ -57,6 +60,12 @@ export interface WebSocketMessage {
   };
 
   current_job?: string;
+}
+
+export interface DailyReportEntry {
+  machine_id: string;
+  runtime_sec: number;
+  part_count: number;
 }
 
 export type UserRole = "OWNER" | "MANAGER" | "WORKER";
